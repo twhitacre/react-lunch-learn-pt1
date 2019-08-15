@@ -22,30 +22,14 @@ class App extends Component {
         <div className="container">
           <h1 className="title">My Whisky List</h1>
           <Form updateList={this.updateList} />
-          <div className="columns">
-            <div className="column">
-              <article className="message">
-                <div className="message-header">
-                  <p>Wish List</p>
-                </div>
-                <div className="message-body">
-                  <List whiskyList={list} />
-                </div>
-              </article>
+          <article className="message">
+            <div className="message-header">
+              <p>Wish List</p>
             </div>
-            <div className="column">
-              <article className="message">
-                <div className="message-header">
-                  <p>Tasted List</p>
-                </div>
-                <div className="message-body">
-                  <p>
-                    <i>WISH LIST HERE...</i>
-                  </p>
-                </div>
-              </article>
+            <div className="message-body">
+              <List whiskyList={list} />
             </div>
-          </div>
+          </article>
         </div>
       </div>
     );

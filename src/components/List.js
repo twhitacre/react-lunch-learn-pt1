@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class List extends Component {
   showWhiskies = list => list.map((item, i) => <li key={i}>{item.name}</li>);
 
   render() {
-    const { whiskyList } = this.props;
-    return <div>{this.showWhiskies(whiskyList)}</div>;
+    const { app } = this.props;
+    return <div>{this.showWhiskies(app.list)}</div>;
   }
 }
 
-export default List;
+const mapStateToProps = state => ({
+  app: state.app,
+});
+
+export default connect(mapStateToProps)(List);

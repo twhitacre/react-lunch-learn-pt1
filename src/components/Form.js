@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addWhisky } from '../lib/app/actions';
 
 class Form extends Component {
   constructor() {
@@ -42,4 +44,7 @@ class Form extends Component {
   }
 }
 
-export default Form;
+export default connect(
+  null,
+  { updateList: addWhisky }
+)(Form);

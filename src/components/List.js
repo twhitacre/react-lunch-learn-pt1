@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
+import { AppConsumer } from '../contexts/AppContext';
 
 class List extends Component {
-  showWhiskies(list) {
-    return list.map((item, i) => <li key={i}>{item.name}</li>);
-  }
+  showWhiskies = list => list.map((item, i) => <li key={i}>{item.name}</li>);
 
   render() {
-    const { whiskyList } = this.props;
-    return <div>{this.showWhiskies(whiskyList)}</div>;
+    return (
+      <AppConsumer>
+        {({ list }) => <div>{this.showWhiskies(list)}</div>}
+      </AppConsumer>
+    );
   }
 }
 

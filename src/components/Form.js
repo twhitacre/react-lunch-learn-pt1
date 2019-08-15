@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { AppConsumer } from '../contexts/AppContext';
 
 class Form extends Component {
   constructor() {
@@ -6,11 +7,10 @@ class Form extends Component {
     this.state = { name: '' };
   }
 
-  submitForm(e) {
+  submitForm(e, addToList) {
     e.preventDefault();
-    const { updateList } = this.props;
     const { name } = this.state;
-    updateList(name);
+    addToList(name);
     this.setState({ name: '' });
   }
 
@@ -22,22 +22,26 @@ class Form extends Component {
   render() {
     const { name } = this.state;
     return (
-      <form
-        onSubmit={e => this.submitForm(e)}
-        className="form"
-        style={{ marginBottom: 50 }}
-      >
-        <div className="field">
-          <input
-            className="input"
-            type="text"
-            name="name"
-            value={name}
-            onChange={e => this.updateName(e)}
-            placeholder="Enter Whisky Name"
-          />
-        </div>
-      </form>
+      <AppConsumer>
+        {({ addToList }) => (
+          <form
+            onSubmit={e => this.submitForm(e, addToList)}
+            className="form"
+            style={{ marginBottom: 50 }}
+          >
+            <div className="field">
+              <input
+                className="input"
+                type="text"
+                name="name"
+                value={name}
+                onChange={e => this.updateName(e)}
+                placeholder="Enter Whisky Name"
+              />
+            </div>
+          </form>
+        )}
+      </AppConsumer>
     );
   }
 }
